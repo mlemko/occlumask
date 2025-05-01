@@ -2,19 +2,25 @@ import sys
 from llama_cpp import Llama
 
 user_prompt = """
-question: The text contains a message sent by a user. It is important that the message does not reveal any identifying information of the user. Identifying information includes but is not limited to details such as name, age, location (and anything that can hint at a location, such as weather and time zone). Does the message contain any possible de-anonymizing information?
+question: The text contains a message sent by a user. It is important that the message does not reveal any identifying information of the user. 
+Identifying information includes:
+- Discussing personal information like location, age, marital status and so on. 
+- Location specific information such as weather, time zone, etc.
+- Mentioning one's gender, tattoos, piercings, physical capacities or disabilities.
+- Mentioning one's profession, studies, hobbies or involvement in activist groups.
+Does the message contain any identifying information?
 
 steps:
-- identify any de-anonymizing information in the text
+- list any identifying information in the text.
 - explain why you identified the sections of text as de-anonymizing
 - analyze the severity of said de-anonymizing information
 - give an integer from 0 to 100 that describes the possible danger of the message
-- answer the question and begin your answer with RESPONSE.
-- print END.
+- answer the question and begin your answer with RESPONSE
+- print END
 
 State each step and show your work for performing that step.
 
-1. identify any de-anonymizing information in the text
+1. list any identifying information in the text
 """
 
 

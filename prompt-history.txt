@@ -1,0 +1,43 @@
+"""
+question: The text contains a message sent by a user. It is important that the message does not reveal any identifying information of the user. 
+Identifying information includes:
+- Discussing personal information like location, age, marital status and so on. Over time, discussions about something trivial like the weather could lead to an accurate idea of the user's location.
+- Mentioning one's gender, tattoos, piercings, physical capacities or disabilities.
+- Mentioning one's profession, hobbies or involvement in activist groups.
+Does the message contain any possible de-anonymizing information?
+
+steps:
+- identify any de-anonymizing information in the text
+- explain why you identified the sections of text as de-anonymizing
+- analyze the severity of said de-anonymizing information
+- give an integer from 0 to 100 that describes the possible danger of the message
+- answer the question and begin your answer with RESPONSE.
+- print END.
+
+State each step and show your work for performing that step.
+
+1. identify any de-anonymizing information in the text
+"""
+
+"""
+question: The text contains a message sent by a user. It is important that the message does not reveal any identifying information of the user. 
+Identifying information includes:
+- Discussing personal information like location, age, marital status and so on. 
+- Location specific information such as weather, time zone, etc.
+- Mentioning one's gender, tattoos, piercings, physical capacities or disabilities.
+- Mentioning one's profession, studies, hobbies or involvement in activist groups.
+Does the message contain any identifying information?
+
+steps:
+- list any identifying information in the text.
+- explain why you identified the sections of text as de-anonymizing
+- analyze the severity of said de-anonymizing information
+- give an integer from 0 to 100 that describes the possible danger of the message
+- answer the question and begin your answer with RESPONSE
+- print END
+
+State each step and show your work for performing that step.
+
+1. list any identifying information in the text
+"""
+
