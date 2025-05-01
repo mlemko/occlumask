@@ -21,14 +21,18 @@ State each step and show your work for performing that step.
 def main(model_path: str, args: list[str]):
     llm = Llama(model_path=model_path, n_ctx=2048, n_batch=2048)
     
-    text = "text: " + args[0] + user_prompt
+    with open(args[0]) as file:
+        text = "text:\n" + "".join(file.readlines()) + user_prompt
     print(text)
     # tweak parameters for more uniform output later
     resp = llm.create_completion(text, max_tokens=4096, stop=["END"])
     print(resp)
     
-    with open("output.json", "+w") as file:
-        file.write(repr(resp))
+    with open("output.txt", "+w") as file:
+        file.write(str(resp["choices"][0]))
+        file.write("\n\n")
+        file.write(text)
+        file.write(resp["choices"][0]["text"])
 
 
 if __name__ == "__main__":
