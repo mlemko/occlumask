@@ -19,8 +19,8 @@ State each step and show your work for performing that step.
 
 
 def main(model_path: str, args: list[str]):
-    llm = Llama(model_path=model_path)
-
+    llm = Llama(model_path=model_path, n_ctx=2048, n_batch=2048)
+    
     text = "text: " + args[0] + user_prompt
     print(text)
     # tweak parameters for more uniform output later
