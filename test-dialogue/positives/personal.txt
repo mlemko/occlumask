@@ -1,0 +1,4 @@
+As a result of my search through kemono, he uses a private website.
+Sponsors(Patreon Users) get a password via DM or email, and it seems like they can see videos of the tier that match it by entering the password on the website.
+I majored in computer science, but I don't study websites and security, so it's hard to figure out passwords.
+First of all, I found out using developer tools and GPT, and I think he used a simple web development program, not a site he coded himself.
