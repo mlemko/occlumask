@@ -39,7 +39,9 @@ def main(model_path: str, args: list[str]):
         file.write("\n\n")
         file.write(text)
         file.write(resp["choices"][0]["text"])
+        
+    return (text, resp)
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2:])
+    print(main(sys.argv[1], sys.argv[2:]))
