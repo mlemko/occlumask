@@ -1,4 +1,4 @@
-import sys
+import argparse
 from llama_cpp import Llama
 
 user_prompt = """
@@ -23,11 +23,20 @@ State each step and show your work for performing that step.
 1. list any identifying information in the text
 """
 
-
-def main(model_path: str, args: list[str]):
-    llm = Llama(model_path=model_path, n_ctx=2048, n_batch=2048)
+def parse_arguments():
+    parser = argparse.ArgumentParser()
     
-    with open(args[0]) as file:
+    parser.add_argument("--model-path", required=True, type=str, help="Path to the model file to use.")
+    parser.add_argument("--input-file", required=True, type=str, help="Path to a text file to use as user input.")
+    parser.add_argument("--pretty-print", action='store_true', help="Pretty print llama output. This also removes any other output from the llama.cpp call.")
+    
+    return parser.parse_args()
+
+def main(args: argparse.Namespace):
+    print(args)
+    llm = Llama(model_path=args.model_path, n_ctx=2048, n_batch=2048, verbose=not args.pretty_print)
+    
+    with open(args.input_file) as file:
         text = "text:\n" + "".join(file.readlines()) + user_prompt
     print(text)
     # tweak parameters for more uniform output later
@@ -40,8 +49,14 @@ def main(model_path: str, args: list[str]):
         file.write(text)
         file.write(resp["choices"][0]["text"])
         
+    if args.pretty_print:
+        print(resp["choices"][0]["text"])
+    else:
+        print(resp)
+    
     return (text, resp)
 
 
 if __name__ == "__main__":
-    print(main(sys.argv[1], sys.argv[2:]))
+    parser = parse_arguments()
+    main(parser)
