@@ -1,5 +1,5 @@
 import argparse
-from llama_cpp import Llama
+from llama_cpp import Llama, LLAMA_DEFAULT_SEED
 
 user_prompt = """
 question: The text contains a message sent by a user. It is important that the message does not reveal any identifying information of the user. 
@@ -29,12 +29,11 @@ def parse_arguments():
     parser.add_argument("--model-path", required=True, type=str, help="Path to the model file to use.")
     parser.add_argument("--input-file", required=True, type=str, help="Path to a text file to use as user input.")
     parser.add_argument("--pretty-print", action='store_true', help="Pretty print llama output. This also removes any other output from the llama.cpp call.")
-    
+    parser.add_argument("--seed", default=LLAMA_DEFAULT_SEED, type=int, help="RNG seed for the model, -1 for random. (default %(default)s)")
     return parser.parse_args()
 
 def main(args: argparse.Namespace):
-    print(args)
-    llm = Llama(model_path=args.model_path, n_ctx=2048, n_batch=2048, verbose=not args.pretty_print)
+    llm = Llama(model_path=args.model_path, n_ctx=2048, n_batch=2048, verbose=not args.pretty_print, seed=args.seed)
     
     with open(args.input_file) as file:
         text = "text:\n" + "".join(file.readlines()) + user_prompt
