@@ -26,9 +26,9 @@ State each step and show your work for performing that step.
 def parse_arguments():
     parser = argparse.ArgumentParser()
     
-    parser.add_argument("--model-path", required=True, type=str, help="Path to the model file to use.")
-    parser.add_argument("--input-file", required=True, type=str, help="Path to a text file to use as user input.")
-    parser.add_argument("--pretty-print", action='store_true', help="Pretty print llama output. This also removes any other output from the llama.cpp call.")
+    parser.add_argument("--model-path", metavar="PATH", required=True, type=str, help="Path to the model file to use.")
+    parser.add_argument("--input-file", metavar="PATH", required=True, type=str, help="Path to a text file to use as user input.")
+    parser.add_argument("--pretty-print", action='store_true', help="Pretty print llama output. This also disables verbose output from llama.cpp.")
     parser.add_argument("--seed", default=LLAMA_DEFAULT_SEED, type=int, help="RNG seed for the model, -1 for random. (default %(default)s)")
     return parser.parse_args()
 
@@ -40,7 +40,6 @@ def main(args: argparse.Namespace):
     print(text)
     # tweak parameters for more uniform output later
     resp = llm.create_completion(text, max_tokens=4096, stop=["END"])
-    print(resp)
     
     with open("output.txt", "+w") as file:
         file.write(str(resp["choices"][0]))
