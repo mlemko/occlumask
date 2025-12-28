@@ -46,11 +46,12 @@ def main(args: argparse.Namespace):
         file.write("\n\n")
         file.write(text)
         file.write(resp["choices"][0]["text"])
-        
+    
+    print(f"seed = {llm._seed}")    
     if args.pretty_print:
         print(resp["choices"][0]["text"])
     else:
-        print(resp)
+        print(resp)    
     
     return (text, resp)
 
