@@ -4,7 +4,7 @@ from llama_cpp import Llama, LLAMA_DEFAULT_SEED
 user_prompt = """
 question: The text contains a message sent by a user. It is important that the message does not reveal any identifying information of the user. 
 Identifying information includes:
-- Discussing personal information like location, age, marital status and so on. 
+- Discussing personal information like location, age, generation, marital status and so on.
 - Location specific information such as weather, time zone, etc.
 - Mentioning one's gender, tattoos, piercings, physical capacities or disabilities.
 - Mentioning one's profession, studies, hobbies or involvement in activist groups.
