@@ -15,8 +15,8 @@ steps:
 - explain why you identified the sections of text as de-anonymizing
 - analyze the severity of said de-anonymizing information
 - give an integer from 0 to 100 that describes the possible danger of the message
-- answer the question and begin your answer with RESPONSE
-- print END
+- answer the question using either "RESPONSE: YES" or "RESPONSE: NO" followed by a newline ONLY. Do not add any words or reasoning.
+- print END 
 
 State each step and show your work for performing that step.
 
@@ -33,7 +33,7 @@ def parse_arguments():
     return parser.parse_args()
 
 def main(args: argparse.Namespace):
-    llm = Llama(model_path=args.model_path, n_ctx=2048, n_batch=2048, verbose=not args.pretty_print, seed=args.seed)
+    llm = Llama(model_path=args.model_path, n_ctx=0, n_batch=2048, verbose=not args.pretty_print, seed=args.seed)
     
     with open(args.input_file) as file:
         text = "text:\n" + "".join(file.readlines()) + user_prompt
